@@ -1,6 +1,10 @@
 class G {
+  /**
+   * G类初始化时的构造函数
+   * @param {*需要监听的目标状态对象} target | Object
+   * @param {*是否依赖SessionStorage} isToSessionStorage | Boolean: true
+   */
   constructor (target, isToSessionStorage = true) {
-    // 构造函数，传入要监听的目标对象
     let that = this;
     that.isToSessionStorage = isToSessionStorage;
     that.types = {};
@@ -22,7 +26,13 @@ class G {
     that.state = new Proxy(target, {
       async set(target, key, value, receiver) {
         let oldVal = Reflect.get(target, key, receiver)
-        return await that.__beforeCallback(target, key, receiver, value, oldVal)
+        if (that.__beforeCallback) {
+          return await that.__beforeCallback(target, key, receiver, value, oldVal)
+        } else if (that.__afterCallback) {
+          return Reflect.set(target, key, value, receiver) && that.__afterCallback(key, value, oldVal)
+        } else {
+          return Reflect.set(target, key, value, receiver)
+        }
       },
       get(target, key, receiver) {
         if (Reflect.has(target, key)) {
@@ -60,8 +70,13 @@ class G {
       sessionStorage.removeItem("__types");
     });
   }
+
+  /**
+   * 向sessionStorage中存值的方法
+   * @param {*需要赋值sessionStorage的key值} key | String
+   * @param {*需要赋值sessionStorage的value值} val | String
+   */
   setSessionStorage (key, val) {
-    // sessionStorage赋值方法
     if (!this.isToSessionStorage) return;
     if (sessionStorage) {
       val instanceof Object || val instanceof Array
@@ -71,8 +86,12 @@ class G {
       this.showError("您的浏览器不支持sessionStorage");
     }
   }
+
+  /**
+   * 从sessionStorage中取值函数
+   * @param {*获取sessionStorage的key值} key | String
+   */
   getSessionStorage (key) {
-    // sessionStorage取值方法
     if (!this.isToSessionStorage) return;
     try {
       if (key in sessionStorage) {
@@ -88,8 +107,12 @@ class G {
       return sessionStorage.getItem(key);
     }
   }
+
+  /**
+   * 获取属性数据类型并存储在实例types属性中
+   * @param {*获取状态对象中数据类型对应的key值} key | String
+   */
   getDataType (key) {
-    // 获取属性数据类型并存储在实例types中
     let that = this;
     try {
       if (typeof that.state[key] !== "object") {
@@ -105,27 +128,50 @@ class G {
       that.showError("获取数据类型错误，错误原因：" + err);
     }
   }
+
+  /**
+   * 赋值前的钩子函数定义
+   * @param {*需要监听的状态属性key值} _key | String
+   * @param {*赋值前需要执行的回调函数，可支持异步操作} callback | Function
+   * callback @param {*获取到更新前的要更新上去的值（新值）} newval | <>
+   *          @param {*获取到更新前的被更新的值（旧值）} oldval | <>
+   *          @param {*执行更新操作的函数，不调用，不更新} next | Function
+   */
   beforeSet (_key, callback) {
-    // 赋值前的钩子函数
     let that = this
     that.__beforeCallback = function (target, key, receiver, newval, oldval) {
       if (_key === key && !!callback) {
         return new Promise(function (resolve, reject) {
-          callback(newval, oldval, function () {
+          if (newval === oldval) {
+            // 如果数据没有变化，不会触发钩子函数的回调
             Reflect.set(target, key, newval, receiver)
-            that.__afterCallback(key, newval, oldval)
             resolve()
-          })
+          } else {
+            callback(newval, oldval, function () {
+              Reflect.set(target, key, newval, receiver)
+              that.__afterCallback ? that.__afterCallback(key, newval, oldval) : ''
+              resolve()
+            })
+          }
         })
       }
     }
   }
+
+  /**
+   * 状态更新后需要执行的钩子函数
+   * @param {*赋值后需要监听的属性名key值} _key | String
+   * @param {*赋值后需要运行的回调函数} callback | Function
+   * callback @param {*赋值后的更新的值（新值）} newval | <>
+   *          @param {*赋值后取到的更新前的值（旧值）} oldval | <>
+   */
   afterSet (_key, callback) {
     // 赋值后的钩子函数
     let that = this
     that.__afterCallback = function (key, newval, oldVal) {
       if (_key === key && callback) {
         callback(newval, oldVal)
+        return true
       }
     }
   }
