@@ -8,6 +8,8 @@ class G {
     let that = this;
     that.isToSessionStorage = isToSessionStorage;
     that.types = {};
+    that.watchKeysBeforeSet = new Set();
+    that.watchkeysAfterSet = new Set();
     that.isEmpty = Symbol("isEmpty");
     that.isIE = navigator.userAgent.toLowerCase().indexOf("trident") !== -1;
     that.OriginTarget = JSON.parse(JSON.stringify(target));
@@ -26,9 +28,9 @@ class G {
     that.state = new Proxy(target, {
       async set(target, key, value, receiver) {
         let oldVal = Reflect.get(target, key, receiver)
-        if (that.__beforeCallback) {
+        if (that.__beforeCallback && that.watchKeysBeforeSet.has(key)) {
           return await that.__beforeCallback(target, key, receiver, value, oldVal)
-        } else if (that.__afterCallback) {
+        } else if (that.__afterCallback && that.watchkeysAfterSet.has(key)) {
           return Reflect.set(target, key, value, receiver) && that.__afterCallback(key, value, oldVal)
         } else {
           return Reflect.set(target, key, value, receiver)
@@ -139,6 +141,7 @@ class G {
    */
   beforeSet (_key, callback) {
     let that = this
+    that.watchKeysBeforeSet.add(_key)
     that.__beforeCallback = function (target, key, receiver, newval, oldval) {
       if (_key === key && !!callback) {
         return new Promise(function (resolve, reject) {
@@ -168,6 +171,7 @@ class G {
   afterSet (_key, callback) {
     // 赋值后的钩子函数
     let that = this
+    that.watchkeysAfterSet.add(_key)
     that.__afterCallback = function (key, newval, oldVal) {
       if (_key === key && callback) {
         callback(newval, oldVal)
