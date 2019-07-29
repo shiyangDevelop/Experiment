@@ -184,7 +184,7 @@ class G {
   }
 }
 
-var g = new G(state);
+var g = new G(state)
 g.beforeSet('name', function (newval, oldval, next) {
   // setTimeout(function () {
     console.log('before:' + newval, oldval)
