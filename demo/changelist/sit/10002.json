@@ -1,0 +1,16 @@
+{
+  "versionNumber": 10002,
+  "version": "1.0.2",
+  "gitVersion": "d753f2b08cff2ac4aef1bb97955e445931f68be6",
+  "files": [
+    "/index.html",
+    "/static/css/app.30790115300ab27614ce176899523b62.css",
+    "/static/css/app.30790115300ab27614ce176899523b62.css.map",
+    "/static/js/app.b22ce679862c47a75225.js",
+    "/static/js/app.b22ce679862c47a75225.js.map",
+    "/static/js/manifest.2ae2e69a05c33dfc65f8.js",
+    "/static/js/manifest.2ae2e69a05c33dfc65f8.js.map",
+    "/static/js/vendor.e00e51762311e00a2108.js",
+    "/static/js/vendor.e00e51762311e00a2108.js.map"
+  ]
+}

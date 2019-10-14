@@ -1,0 +1,16 @@
+{
+  "versionNumber": 10014,
+  "version": "1.0.14",
+  "gitVersion": "d753f2b08cff2ac4aef1bb97955e445931f68be6",
+  "files": [
+    "/index.html",
+    "/static/css/app.ec698d26265b8006ad07c2f8e46c949b.css",
+    "/static/develop.js",
+    "/static/js/app.13f3fff23d7b4c02d81d.js",
+    "/static/js/develop.729214f01cb9f99a468c.js",
+    "/static/js/manifest.13d5d2a920afd08ec9a0.js",
+    "/static/js/production.5618b5b38c4640bb2673.js",
+    "/static/js/vendor.4309fd0f22e59b15d777.js",
+    "/static/production.js"
+  ]
+}
