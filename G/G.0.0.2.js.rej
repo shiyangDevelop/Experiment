@@ -1,0 +1,13 @@
+diff a/G/G.0.0.2.js b/G/G.0.0.2.js	(rejected hunks)
+@@ -28,9 +28,9 @@
+     that.state = new Proxy(target, {
+       async set(target, key, value, receiver) {
+         let oldVal = Reflect.get(target, key, receiver)
+-        if (that.__beforeCallback) {
++        if (that.__beforeCallback && that.watchKeysBeforeSet.has(key)) {
+           return await that.__beforeCallback(target, key, receiver, value, oldVal)
+-        } else if (that.__afterCallback) {
++        } else if (that.__afterCallback && that.watchkeysAfterSet.has(key)) {
+           return Reflect.set(target, key, value, receiver) && that.__afterCallback(key, value, oldVal)
+         } else {
+           return Reflect.set(target, key, value, receiver)

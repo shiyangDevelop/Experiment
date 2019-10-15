@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./Back.js"></script>
+</head>
+<body>
+  <input type="text" id="btn"/>
+</body>
+</html>
+<script>
+  new Back({
+    type: 'hash',
+    path: 'home',
+    callback: function (next) {
+      document.getElementById('btn').value = new Date().getTime()
+      var div = document.createElement('div')
+      div.innerHTML = new Date().getTime()
+      document.querySelector('body').appendChild(div)
+    }
+  })
+</script>

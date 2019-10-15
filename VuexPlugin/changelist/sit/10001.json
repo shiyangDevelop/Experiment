@@ -1,7 +1,20 @@
 {
-  "versionNumber": 10001,
   "version": "1.0.1",
+  "versionNumber": 10001,
   "gitVersion": "d753f2b08cff2ac4aef1bb97955e445931f68be6",
+  "fromVersion": "1.0.0",
+  "patchSHA1": "3525043c09cd943bb63a780c572befec5c8c25c1",
+  "fullSHA1": "8bcee933b05871deac4a1c77e9d058e87cb1fd7e",
+  "timestamp": "2019-10-11 03:38:34:608",
+  "changes": {
+    "addList": [
+      "/static/js/app.cd46de250fde05885961.js",
+      "\\index.html"
+    ],
+    "deleteList": [
+      "/static/js/app.09b79a4dae5b24c02367.js"
+    ]
+  },
   "files": [
     "/index.html",
     "/static/css/app.ec698d26265b8006ad07c2f8e46c949b.css",
