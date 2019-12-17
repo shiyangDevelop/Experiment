@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'http/index'
+import axios from '../../../http/index'
 import { Link } from 'react-router-dom'
 import CSS from './index.module.less'
-import logoImg from 'assets/images/logo.png';
+import logoImg from '../../../assets/images/logo.png';
 class Login extends React.Component {
   constructor (props) {
     super(props)
@@ -14,6 +14,7 @@ class Login extends React.Component {
   }
   async loginFn (e) {
     e.preventDefault()
+    this.props.history.push('/home')
     let isFull = Object.keys(this.state).every((key) => !!this.state[key])
     if (isFull) {
       try {
@@ -54,7 +55,7 @@ class Login extends React.Component {
           </div>
           <div className={CSS.formButton}><button type="submit">登录</button></div>
         </form>
-        <Link to="forgetPwd">忘记密码</Link>
+        <Link to={history => ({...history, pathname: "/forgetPwd"})}>忘记密码</Link>
       </div>
     )
   }

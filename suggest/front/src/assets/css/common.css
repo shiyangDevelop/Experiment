@@ -1,5 +1,5 @@
 html {
-  font-size: calc(200vw / 7.5);
+  font-size: calc(100vw / 3.75);
 }
 body, h1, h2, h3, h4, h5, h6, p, ul, li {
   margin: 0;
@@ -11,25 +11,17 @@ body {
 input, button, select {
   outline: none;
 }
-/* Header组件样式 */
-.HeaderComponent {
-  position: relative;
+/* 弹性布局公共样式 */
+.flex-x-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-y-center {
   display: flex;
   align-items: center;
+}
+.flex-center {
+  display: flex;
   justify-content: center;
-  height: .45rem;
-  border-bottom: 1px solid #DBDBDB;
-}
-.HeaderComponent .back {
-  position: absolute;
-  left: 0;
-  width: .3rem;
-  text-align: center;
-  font-size: 0;
-}
-.HeaderComponent .back img {
-  width: .1rem;
-}
-.HeaderComponent .title {
-  font-size: .18rem;
+  align-items: center;
 }
