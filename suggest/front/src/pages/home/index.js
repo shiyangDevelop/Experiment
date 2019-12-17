@@ -2,9 +2,6 @@ import React from 'react'
 import Swiper from '../../components/Swiper'
 import CSS from './index.module.less'
 class Home extends React.Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
     return (
       <div className={CSS.home}>

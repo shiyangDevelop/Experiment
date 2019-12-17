@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import axios from '../../../http/index'
 import { Header } from '../../../components/Header'
 import CSS from './index.module.less'

@@ -104,6 +104,9 @@
         }
     },
     "plus": {
+    		"statusbar":{
+	    		"immersed": true/*沉浸式状态栏*/
+	    	},
         "splashscreen": {
             "autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
             "waiting": true/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
@@ -162,11 +165,11 @@
                     }
                 },
                 "android": {
-                    "mdpi": "", /*普通屏程序图标，分辨率：48x48*/
-                    "ldpi": "", /*大屏程序图标，分辨率：48x48*/
-                    "hdpi": "", /*高分屏程序图标，分辨率：72x72*/
-                    "xhdpi": "",/*720P高分屏程序图标，分辨率：96x96*/
-                    "xxhdpi": ""/*1080P 高分屏程序图标，分辨率：144x144*/
+                    "mdpi": "C:/Users/时洋/Desktop/logo/logo/logo.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi": "C:/Users/时洋/Desktop/logo/logo/logo.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi": "C:/Users/时洋/Desktop/logo/logo/logo72.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi": "C:/Users/时洋/Desktop/logo/logo/logo96.png",/*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi": "C:/Users/时洋/Desktop/logo/logo/logo144.png","xxxhdpi":"C:/Users/时洋/Desktop/logo/logo/logo192.png"/*1080P 高分屏程序图标，分辨率：144x144*/
                 }
             },
             "splashscreen": {
