@@ -18,7 +18,7 @@ class Login extends React.Component {
     this.utils.ready(this.listenBack)
   }
   listenBack() {
-    
+    let plus = window.plus
     let webview = plus.webview.currentWebview();
     plus.key.addEventListener('backbutton', function () {
       webview.canBack(function (e) {
