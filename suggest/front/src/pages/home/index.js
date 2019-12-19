@@ -1,16 +1,15 @@
 import React from 'react'
+import { Container } from '../../components/Container'
 import Swiper from '../../components/Swiper'
 import CSS from './index.module.less'
 class Home extends React.Component {
   render () {
     return (
-      <div className={CSS.home}>
-        <header className={`${CSS.search} flex-center`}>
-          <input onFocus={() => this.props.history.push('/search')} placeholder="搜索" type="text" />
-          <i className="iconfont icon-search"></i>
-        </header>
-        <Swiper/>
-      </div>
+      <Container type={'search'} focusTo={'/search'} {...this.props}>
+        <div className={CSS.home}>
+          <Swiper/>
+        </div>
+      </Container>
     )
   }
 }

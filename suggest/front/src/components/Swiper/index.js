@@ -33,6 +33,7 @@ class EmSwiper extends React.Component {
   init () {
     this.swiperObject = new Swiper(this.refs.swiper_root, {
       autoplay: true,
+      loop: true,
       on: {
         tap: this.state.callback
       }

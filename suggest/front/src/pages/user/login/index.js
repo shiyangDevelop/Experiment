@@ -25,8 +25,6 @@ class Login extends React.Component {
         if (e.canBack) {
           webview.back();
         } else {
-          //webview.close(); //hide,quit
-          //plus.runtime.quit();
           //首页返回键处理
           //处理逻辑：1秒内，连续两次按返回键，则退出应用；
           var first = null;
