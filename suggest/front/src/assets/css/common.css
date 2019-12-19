@@ -25,3 +25,7 @@ input, button, select {
   justify-content: center;
   align-items: center;
 }
+.flex-x-space-around {
+  display: flex;
+  justify-content: space-around;
+}

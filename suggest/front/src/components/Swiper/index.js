@@ -6,7 +6,7 @@ class EmSwiper extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      callback: (e) => {
+      callback: () => {
         console.log(this.swiperObject.el)
       },
       list: [
@@ -33,6 +33,7 @@ class EmSwiper extends React.Component {
   init () {
     this.swiperObject = new Swiper(this.refs.swiper_root, {
       autoplay: true,
+      loop: true,
       on: {
         tap: this.state.callback
       }
@@ -46,7 +47,7 @@ class EmSwiper extends React.Component {
             this.state.list.map((item, index) => {
               return (
                 <div className={`${CSS.slider_item} swiper-slide`} key={index} style={{background: item.bgColor}}>
-                  <img src={item.url} />
+                  <img src={item.url} alt=''/>
                 </div>
               )
             })
