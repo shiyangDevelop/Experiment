@@ -21,77 +21,7 @@ export default {
     data: {
       type: Array,
       default () {
-        return [{
-          title: '王海洋区',
-          name: '王海洋',
-          describe: '资深总监',
-          date: '2012-08-23',
-          children: [
-            {
-              title: '营业部经理',
-              name: '王健林',
-              describe: '一代',
-              date: '2012-08-23',
-              children: [
-                {
-                  title: '业务员',
-                  name: '李涛',
-                  describe: '二代',
-                  date: '2019-03-08'
-                }, {
-                  title: '业务员',
-                  name: '张帅',
-                  describe: '二代',
-                  date: '2019-06-03'
-                }
-              ]
-            }, {
-              title: '营业部经理',
-              name: '赵建国',
-              describe: '一代',
-              date: '2012-08-23',
-              children: [
-                {
-                  title: '业务主任',
-                  name: '王佳灵',
-                  describe: '二代',
-                  date: '2013-08-26'
-                }, {
-                  title: '业务主任',
-                  name: '单华伟',
-                  describe: '二代',
-                  date: '2013-08-26'
-                }
-              ]
-            }, {
-              title: '营业部经理',
-              name: '赵建国',
-              describe: '一代',
-              date: '2012-08-23',
-              children: [
-                {
-                  title: '业务主任',
-                  name: '李小婉',
-                  describe: '二代',
-                  date: '2015-03-15'
-                }, {
-                  title: '业务主任',
-                  name: '李小婉',
-                  describe: '二代',
-                  date: '2015-03-15',
-                  children: [
-                    {
-                      title: '业务员',
-                      name: '李天一',
-                      describe: '三代',
-                      date: '2015-03-15'
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }]
+        return []
       }
     }
   },
@@ -170,6 +100,7 @@ export default {
           return prev.top - next.top
         }).reverse()
         posArr = posArr.filter(item => (item.top || item.left))
+        // console.log(posArr)
         let cvs = document.querySelector('.cvs')
         !cvs && (cvs = document.createElement('canvas'))
         cvs.width = this.$refs.firstLevel.clientWidth
@@ -193,7 +124,10 @@ export default {
           }
           // 绘制向下子节点路径
           for (let j = i + 1; j < posArr.length; j++) {
-            if (elInfo.id !== posArr[j].id && elInfo.id.indexOf(posArr[j].id) === 0) {
+            let elInfoArr = elInfo.id.split('_')
+            let posArrJArr = posArr[j].id.split('_')
+            let isDraw = posArrJArr.every((item, index) => item === elInfoArr[index])
+            if (elInfo.id !== posArr[j].id && isDraw) {
               cxt.moveTo(posArr[j].left, posArr[j].bottom)
               cxt.lineTo(posArr[j].left, posArr[j].bottom + 25)
               cxt.stroke()
@@ -216,7 +150,6 @@ export default {
       }
       this.childIsShow = [...this.childIsShow]
       // this.init(this.childIsShow, '')
-      
       setTimeout(() => {
         this.drawPath()
       }, 0)
