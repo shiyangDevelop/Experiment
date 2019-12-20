@@ -4,7 +4,7 @@ import { Container } from '../../components/Container'
 class Schedule extends React.Component {
   render () {
     return (
-      <Container title={'日程表'} {...this.props}>
+      <Container title={'日程表'} activeIndex={2} {...this.props}>
         <div>日程表模块</div>
       </Container>
     )

@@ -4,7 +4,7 @@ import { Container } from '../../components/Container'
 class Mine extends React.Component {
   render () {
     return (
-      <Container title={'我的'} {...this.props}>
+      <Container title={'我的'} activeIndex={3} {...this.props}>
         <div>我的模块</div>
       </Container>
     )

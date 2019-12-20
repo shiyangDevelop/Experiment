@@ -4,7 +4,7 @@ import { Container } from '../../components/Container'
 class Testing extends React.Component {
   render () {
     return (
-      <Container title={'笔试题'} {...this.props}>
+      <Container title={'笔试题'} activeIndex={1} {...this.props}>
         <div>笔试题模块</div>
       </Container>
     )

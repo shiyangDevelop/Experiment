@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, HashRouter, Redirect } from 'react-router-dom';
 import utils from './utils'
 import './assets/css/icon.css';
 import './assets/css/common.css';
@@ -32,7 +32,8 @@ class BaseRouter extends React.Component {
           <Route path='/search' exact component={React.lazy(() => import('./pages/search'))} />
           <Route path='/loading' exact component={Loading} />
           <Route path='/500' exact component={React.lazy(() => import('./pages/error/index_500'))}/>
-          <Route path='/*' exact component={React.lazy(() => import('./pages/error/index_404'))}></Route>
+          <Route path='/404' exact component={React.lazy(() => import('./pages/error/index_404'))}></Route>
+          <Redirect to='/404'/>
         </HashRouter>
       </React.Suspense>
     )

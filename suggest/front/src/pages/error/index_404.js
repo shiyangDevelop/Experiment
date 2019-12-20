@@ -1,6 +1,6 @@
 import React from 'react'
 import { ContainerNoFooter } from '../../components/Container'
-import CSS from './index.module.less'
+// import CSS from './index.module.less'
 class Page404 extends React.Component {
   render () {
     return (
